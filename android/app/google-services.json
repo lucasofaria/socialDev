@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "890979380767",
+    "project_id": "devnet-4b59d",
+    "storage_bucket": "devnet-4b59d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890979380767:android:3e6949d605f43415df2f2a",
+        "android_client_info": {
+          "package_name": "com.socialdev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcB8W7Bj7mSR3Tug4AXrQlmANDhM1xODw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
