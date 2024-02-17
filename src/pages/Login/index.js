@@ -1,12 +1,16 @@
-import React, {useState} from "react";
-import { Text, Alert } from "react-native";
+import React, {useState, useContext} from "react";
+import { Text, Alert, Keyboard } from "react-native";
 import { Container, Title, Input, Button, TextButton, AreaText, SignUp } from "./styles";
+
+import { AuthContext } from "../../contexts/auth";
 
 function Login(){
   const [login, setLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+
+  const { signUp } = useContext(AuthContext);
 
 
   function toggleLogin(){
@@ -22,10 +26,15 @@ function Login(){
     }
   }
 
-  function handleSignUp(){
+  async function handleSignUp(){
     if(name === '' || email === '' || password === ''){
       Alert.alert('Atenção', 'Preencha todos os campos para cadastrar!')
     }
+
+    await signUp(email, password, name);
+
+    Keyboard.dismiss();
+
   }
   
   if(login){
