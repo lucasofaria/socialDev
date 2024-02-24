@@ -96,7 +96,7 @@ function Login(){
         />
 
         <Input
-          placeholder="***************"
+          placeholder="**********"
           secureTextEntry={true}
           onChangeText={(texto) => setPassword(texto)}
           value={password}
