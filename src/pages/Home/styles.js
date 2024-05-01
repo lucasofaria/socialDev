@@ -5,6 +5,11 @@ export const Container = styled.View`
   background-color: #36393F;
 `;
 
+export const ListPosts = styled.FlatList`
+  flex: 1;
+  background-color: #F1F1F1;
+`;
+
 export const ButtonPost = styled.TouchableOpacity`
   position: absolute;
   bottom: 5%;
