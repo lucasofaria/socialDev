@@ -19,7 +19,7 @@ export default function Home(){
 
   const [ loadingRefresh, setLoadingRefresh ] = useState(false);
   const [ emptyList, setEmptyList ] = useState(false);
-  const [ lastList, setLastList ] = useState('');
+  const [ lastItem, setLastItem ] = useState('');
 
   useFocusEffect(
     useCallback(() => {
@@ -45,7 +45,7 @@ export default function Home(){
 
             setEmptyList(!!snapshot.empty);
             setPosts(postList);
-            setLastList(snapshot.docs[snapshot.docs.length - 1]);
+            setLastItem(snapshot.docs[snapshot.docs.length - 1]);
             setLoading(false);
 
           }
@@ -61,6 +61,7 @@ export default function Home(){
     }, [])
   )
 
+  //Atualizando posts ao puxar para cima
   async function handleRefreshPosts(){
     setLoadingRefresh(true);
 
@@ -82,11 +83,43 @@ export default function Home(){
 
       setEmptyList(false);
       setPosts(postList);
-      setLastList(snapshot.docs[snapshot.docs.length - 1]);
+      setLastItem(snapshot.docs[snapshot.docs.length - 1]);
       setLoading(false);
     })
 
     setLoadingRefresh(false);
+  }
+
+  //Buscando mais posts ao chegar no final da lista
+  async function getListPosts(){
+    if(emptyList){
+      //Se buscou toda lista retira o loading
+      setLoading(false);
+      return null;
+    }
+
+    if(loading) return;
+
+    firestore().collection('posts')
+    .orderBy('created', 'desc')
+    .limit(5)
+    .startAfter(lastItem)
+    .get()
+    .then( (snapshot) => {
+      const postList = [];
+
+      snapshot.docs.map( u => {
+        postList.push({
+          ...u.data(),
+          id: u.id,
+        })
+      })
+      
+      setEmptyList(!!snapshot.empty);
+      setLastItem(snapshot.docs[snapshot.docs.length - 1]);
+      setPosts(oldPosts => [...oldPosts, ...postList]);
+      setLoading(false);
+    })
   }
 
   return(
@@ -111,6 +144,9 @@ export default function Home(){
 
           refreshing={loadingRefresh}
           onRefresh={ handleRefreshPosts }
+
+          onEndReached={ () => getListPosts() }
+          onEndReachedThreshold={0.2}
         />
       )}
 
