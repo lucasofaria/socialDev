@@ -5,7 +5,7 @@ export const Container = styled.View`
   background-color: #36393F;
 `;
 
-export const ListPosts = styled.FlatList`
+export const ListsPosts = styled.FlatList`
   flex: 1;
   background-color: #F1F1F1;
 `;

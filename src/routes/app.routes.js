@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Home from "../pages/Home";
 import NewPost from "../pages/NewPost";
-import PostUser from "../pages/PostsUser";
+import PostsUser from "../pages/PostsUser";
 import Profile from "../pages/Profile";
 import Search from "../pages/Search";
 
@@ -36,8 +36,8 @@ function StackRoutes(){
       />
 
 <Stack.Screen
-        name="PostUser"
-        component={PostUser}
+        name="PostsUser"
+        component={PostsUser}
         options={{
           headerTintColor: '#FFF',
           headerStyle:{

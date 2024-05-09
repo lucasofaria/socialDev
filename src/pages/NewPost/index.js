@@ -42,7 +42,7 @@ function NewPost(){
       created: new Date(),
       content: post,
       autor: user?.nome,
-      userID: user?.uid,
+      userId: user?.uid,
       likes: 0,
       avatarUrl,
     })

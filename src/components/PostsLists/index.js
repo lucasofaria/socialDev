@@ -14,11 +14,13 @@ import {
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import firestore from '@react-native-firebase/firestore'; 
+import { useNavigation } from '@react-navigation/native';
 
 import { formatDistance } from 'date-fns'; 
 import { ptBR } from 'date-fns/locale';
 
-export default function PostList({ data, userId }) {
+export default function PostsLists({ data, userId }) {
+  const navigation = useNavigation();
   const [likePost, setLikePost] = useState(data.likes);
 
   async function handleLikesPost(id, likes){
@@ -74,7 +76,7 @@ export default function PostList({ data, userId }) {
 
   return (
     <Container>
-      <Header>
+      <Header onPress={ () => navigation.navigate("PostsUser", {title: data.autor, userId: data.userId} )}>
         {data.avatarUrl ? (
           <Avatar
             source={{ uri : data.avatarUrl }}

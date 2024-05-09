@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useContext} from "react";
 import { View, ActivityIndicator } from "react-native";
-import { Container, ButtonPost, ListPosts } from './styles';
+import { Container, ButtonPost, ListsPosts } from './styles';
 import Feather from 'react-native-vector-icons/Feather';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
@@ -8,7 +8,7 @@ import firestore from '@react-native-firebase/firestore';
 import { AuthContext } from "../../contexts/auth";
 
 import Header from "../../components/Header";
-import PostList from "../../components/PostList";
+import PostsLists from "../../components/PostsLists";
 
 export default function Home(){
   const navigation = useNavigation();
@@ -132,11 +132,11 @@ export default function Home(){
           <ActivityIndicator size={50} color={'#E52246'}/>
         </View>
       ) : (
-        <ListPosts
+        <ListsPosts
           showsVerticalScrollIndicator={false}
           data={posts}
           renderItem={({ item }) => (
-            <PostList
+            <PostsLists
               data={item}
               userId={user?.uid}
             />
