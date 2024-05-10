@@ -23,3 +23,7 @@ export const Input = styled.TextInput`
   color: #000;
   background-color: #E1E1E1;
 `;
+
+export const List = styled.FlatList`
+  flex: 1;
+`;
