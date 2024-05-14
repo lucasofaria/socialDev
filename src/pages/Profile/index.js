@@ -1,23 +1,58 @@
-import React, {useContext} from "react";
-import {View, Text, Button} from "react-native";
+import React, {useContext, useState} from "react";
+import { 
+  Container,
+  Name,
+  Email,
+  Button, 
+  TextButton,
+  UploadButton,
+  UploadText,
+  Avatar 
+} from "./styles";
+
+import Header from "../../components/Header";
 
 import { AuthContext } from "../../contexts/auth";
 
 function Profile(){
-  const { signOut } = useContext(AuthContext);
+  const { signOut, user } = useContext(AuthContext);
+
+  const [name, setName] = useState(user?.nome);
+  const [url, setUrl] = useState(null);
 
   async function handleSignOut(){
     await signOut();
   }
 
   return(
-    <View>
-      <Text>Página de Perfil</Text>
-      <Button
-        title="Sair"
-        onPress={handleSignOut}
-      />
-    </View>
+    <Container>
+      <Header/>
+
+      { url ? (
+        <UploadButton>
+          <UploadText>+</UploadText>
+          <Avatar
+            source={{ uri: url }}
+          />
+        </UploadButton>
+      ) : (
+        <UploadButton>
+          <UploadText>+</UploadText>
+        </UploadButton>
+      )}
+
+      <Name>{user?.nome}</Name>
+      <Email>{user?.email}</Email>
+
+      <Button bg={'#0077b6'}>
+        <TextButton color={'#FFF'}>Atualizar perfil</TextButton>
+      </Button>
+
+      <Button bg={'#DDD'} onPress={handleSignOut}>
+        <TextButton color={'#36393F'}>Sair</TextButton>
+      </Button>
+
+    </Container>
   )
 }
 
