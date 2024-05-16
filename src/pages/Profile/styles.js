@@ -63,3 +63,42 @@ export const Avatar = styled.Image`
   height: 160px;
   border-radius: 80px;
 `;
+
+export const ModalContainer = styled.KeyboardAvoidingView`
+  width: 100%;
+  height: 65%;
+  background-color: #FFF;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  position: absolute;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ButtonBack = styled.TouchableOpacity`
+  flex-direction: row;
+  position: absolute;
+  left: 15px;
+  top: 20px;
+  align-items: center;
+`;
+
+export const AreaText = styled.View`
+  width: 90%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+`;
+
+export const Text = styled.Text`
+  font-size: 16px;
+  color: #121212;
+`;
+
+export const Input = styled.TextInput`
+  background-color: #DDD;
+  width: 90%;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 18px;
+`;
